@@ -30,14 +30,14 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 %install
 
 # Scriptlets Start
-%filetriggerin -- %{v2ray_path}
-%grant_cap -p %{v2ray_path}
+%filetriggerin -- %{v2ray_path} || :
+%grant_cap -p %{v2ray_path} || :
 
 %preun
-%revoke_cap -p %{v2ray_path}
+%revoke_cap -p %{v2ray_path} || :
 
 %posttrans
-%grant_cap -p %{v2ray_path}
+%grant_cap -p %{v2ray_path} || :
 # Scriptlets End
 
 %files
@@ -47,3 +47,5 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 - Inital v2ray-cap
 * Tue Sep 22 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.1 - 1
 - Remove build arch
+* Tue Sep 22 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.2 - 1
+- Fix can not remove when v2ray not exists
