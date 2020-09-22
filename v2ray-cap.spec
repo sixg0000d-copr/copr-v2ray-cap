@@ -9,7 +9,7 @@
 }
 
 Name:           v2ray-cap
-Version:        1.0.0
+Version:        1.0.1
 Release:        1%{?dist}
 Summary:        A script for grant network capabilities to %{v2ray_path}
 
@@ -17,6 +17,8 @@ License:        MIT
 URL:            https://www.v2fly.org/
 
 Requires:       libcap
+
+BuildArch:      noarch
 
 %description
 Installing this package will grant V2Ray core binary the capabilities for transparent proxies.
@@ -43,3 +45,5 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 %changelog
 * Tue Sep 22 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.0 - 1
 - Inital v2ray-cap
+* Tue Sep 22 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.1 - 1
+- Remove build arch
