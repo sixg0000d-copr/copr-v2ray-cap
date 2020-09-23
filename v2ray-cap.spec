@@ -30,7 +30,7 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 %install
 
 # Scriptlets Start
-%filetriggerin -- %{v2ray_path} || :
+%filetriggerin -- %{v2ray_path}
 %grant_cap -p %{v2ray_path} || :
 
 %preun
