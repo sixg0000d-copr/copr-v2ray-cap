@@ -9,7 +9,7 @@
 }
 
 Name:           v2ray-cap
-Version:        1.0.1
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        A script for grant network capabilities to %{v2ray_path}
 
