@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        A script for grant network capabilities to v2ray binary.
 
 License:        MIT
-URL:            https://github.com/sixg0000d-copr/copr-v2ray-cap/
+URL:            https://github.com/sixg0000d-copr/v2ray-cap
 
 Requires:       libcap
 Requires:       %{v2ray_path}
