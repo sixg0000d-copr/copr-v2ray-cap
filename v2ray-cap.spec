@@ -24,29 +24,36 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 
 # Scriptlets >>
 %define grant_cap(p:) %{expand:
-    echo   '  Granting capabilities to %{-p*}'
-    setcap 'cap_net_bind_service=+ep cap_net_admin=+ep' %{-p*} || :
+    if [ -z $1 ] || [ $1 -ne 2 ] && [ -x /usr/sbin/setcap ]; then
+        # Not upgrade
+        echo '  Granting capabilities to %{-p*}'
+        /usr/sbin/setcap 'cap_net_bind_service=+ep cap_net_admin=+ep' %{-p*} || :
+    fi
 }
 
 %define revoke_cap(p:) %{expand:
-    echo   '  Revoking capabilities from %{-p*}'
-    setcap 'cap_net_bind_service=-ep cap_net_admin=-ep' %{-p*} || :
+    if [ $1 -eq 0 ] && [ -x /usr/sbin/setcap ]; then
+        # Package removal, not upgrade
+        echo '  Revoking capabilities from %{-p*}'
+        /usr/sbin/setcap 'cap_net_bind_service=-ep cap_net_admin=-ep' %{-p*} || :
+    fi
 }
+
+%post
+%grant_cap -p %{v2ray_path}
 
 %filetriggerin -- %{v2ray_path}
 %grant_cap -p %{v2ray_path}
 
 %preun
 %revoke_cap -p %{v2ray_path}
-
-%posttrans
-%grant_cap -p %{v2ray_path}
 # << Scriptlets
 
 %files
 
 %changelog
 * Thu Nov 19 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.4 - 1
+- Improve scriptlets
 - Change Comments
 * Sat Sep 26 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.3 - 1
 - Fix changelog order
