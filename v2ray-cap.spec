@@ -1,7 +1,7 @@
 %global v2ray_path %{_bindir}/v2ray
 
 Name:            v2ray-cap
-Version:         1.0.3
+Version:         1.0.4
 Release:         1%{?dist}
 Summary:         A script for grant network capabilities to v2ray binary.
 
