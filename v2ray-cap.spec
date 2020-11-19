@@ -1,17 +1,19 @@
 %global v2ray_path %{_bindir}/v2ray
 
-Name:           v2ray-cap
-Version:        1.0.3
-Release:        1%{?dist}
-Summary:        A script for grant network capabilities to v2ray binary.
+Name:            v2ray-cap
+Version:         1.0.3
+Release:         1%{?dist}
+Summary:         A script for grant network capabilities to v2ray binary.
 
-License:        MIT
-URL:            https://github.com/sixg0000d-copr/v2ray-cap
+License:         MIT
+URL:             https://github.com/sixg0000d-copr/v2ray-cap
 
-Requires:       libcap
-Requires:       %{v2ray_path}
+Requires:        libcap
+Requires(post):  libcap
+Requires(preun): libcap
+Requires:        %{v2ray_path}
 
-BuildArch:      noarch
+BuildArch:       noarch
 
 %description
 Installing this package will grant V2Ray core binary the capabilities for transparent proxies.
@@ -53,6 +55,7 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 
 %changelog
 * Thu Nov 19 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.4 - 1
+- Add qualifier requires
 - Improve scriptlets
 - Change Comments
 * Sat Sep 26 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.3 - 1
