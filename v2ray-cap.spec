@@ -22,7 +22,7 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 
 %install
 
-# Scriptlets Start
+# Scriptlets >>
 %define grant_cap(p:) %{expand:
     echo   '  Granting capabilities to %{-p*}'
     setcap 'cap_net_bind_service=+ep cap_net_admin=+ep' %{-p*} || :
@@ -41,11 +41,13 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 
 %posttrans
 %grant_cap -p %{v2ray_path}
-# Scriptlets End
+# << Scriptlets
 
 %files
 
 %changelog
+* Thu Nov 19 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.4 - 1
+- Change Comments
 * Sat Sep 26 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.3 - 1
 - Fix changelog order
 - Improve defined function macros
