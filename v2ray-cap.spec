@@ -1,7 +1,7 @@
 %global v2ray_path %{_bindir}/v2ray
 
 Name:            v2ray-cap
-Version:         1.0.4
+Version:         1.0.5
 Release:         1%{?dist}
 Summary:         A script for grant network capabilities to v2ray binary.
 
@@ -45,7 +45,9 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 %grant_cap -p %{v2ray_path}
 
 %filetriggerin -- %{v2ray_path}
+if (grep 'v2ray$' &>/dev/null); then
 %grant_cap -p %{v2ray_path}
+fi || :
 
 %preun
 %revoke_cap -p %{v2ray_path}
@@ -54,6 +56,8 @@ Installing this package will grant V2Ray core binary the capabilities for transp
 %files
 
 %changelog
+* Sun Jan 17 2021 sixg0000d <sixg0000d@gmail.com> - 1.0.5 - 1
+- Triggered by precise path
 * Thu Nov 19 2020 sixg0000d <sixg0000d@gmail.com> - 1.0.4 - 1
 - Add qualifier requires
 - Improve scriptlets
